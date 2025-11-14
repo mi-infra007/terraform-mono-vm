@@ -100,6 +100,7 @@ stages:
     jobs:
       - job: destroy
         steps:
+        - template: install-init.yaml
         - task: TerraformTask@5
           inputs:
             provider: 'azurerm'
