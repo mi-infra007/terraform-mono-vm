@@ -4,7 +4,7 @@ pool:
  vmImage: ubuntu-latest
 
 variables:
-  - name: PATH
+  - name: def_path
     value: '$(System.DefaultWorkingDirectory)/environment/dev'
 
   # - stage1 - init, validate and plan
