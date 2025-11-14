@@ -93,4 +93,17 @@ stages:
             command: 'apply'
             workingDirectory: '$(def_path)'
             environmentServiceNameAzureRM: 'fire'
+
+  - stage: destroy
+    condition: failed()
+    displayName: Terraform Destroy
+    jobs:
+      - job: destroy
+        steps:
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'destroy'
+            workingDirectory: '$(def_path)'
+            environmentServiceNameAzureRM: 'fire'
         
