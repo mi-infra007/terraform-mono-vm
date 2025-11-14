@@ -60,3 +60,15 @@ stages:
             provider: 'azurerm'
             command: 'validate'
             workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+
+  - stage: securityScan
+    displayName: Security Scanning
+    jobs:
+      - job: tfsecScan
+        displayName: tfsec-scanning
+        steps:
+        - task: tfsec@1
+          displayName: tfsec
+          inputs:
+            version: 'v1.26.0'
+            dir: '$(System.DefaultWorkingDirectory)'
