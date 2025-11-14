@@ -18,7 +18,10 @@ stages:
       - job: initPlan
         displayName: Init and Plan
         steps:
-        - script: sudo apt-get update && sudo apt-get install -y unzip
+        - task: CmdLine@2
+          inputs:
+            script: 'apt update && sudo apt install -y unzip'
+
           displayName: installing unzip
         - task: TerraformInstaller@1
           inputs:
