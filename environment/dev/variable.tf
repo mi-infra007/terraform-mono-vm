@@ -28,3 +28,7 @@ variable "public_ip_addresses" {
 variable "vms" {
   
 }
+
+variable "key_vaults" {
+  
+}

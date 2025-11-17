@@ -94,16 +94,18 @@ public_ip_addresses = {
 
 vms = {
   vm1 = {
-    subnet_name          = "frontend"
-    virtual_network_name = "vnet-dev-001"
-    public_ip_name       = "frontend-pip"
-    nic_name             = "nic-dev-001"
-    location             = "Central India"
-    resource_group_name  = "rg-dev-001"
-    vm_name              = "vm-dev-001"
-    vm_size              = "Standard B1s"
-    admin_username       = "testuser"
-    admin_password       = "P@ssword1234"
+    key_vault_name           = "myapp-kv-dev"
+    key_vault_resource_group = "myapp-rg-dev"
+    username                 = "username"
+    password                 = "password"
+    subnet_name              = "frontend"
+    virtual_network_name     = "vnet-dev-001"
+    public_ip_name           = "frontend-pip"
+    nic_name                 = "nic-dev-001"
+    location                 = "Central India"
+    resource_group_name      = "rg-dev-001"
+    vm_name                  = "vm-dev-001"
+    vm_size                  = "Standard B1s"
     os_disk = {
       osdisk1 = {
         caching              = "ReadWrite"
@@ -121,16 +123,18 @@ vms = {
   }
 
   vm2 = {
-    subnet_name          = "backend"
-    virtual_network_name = "vnet-dev-001"
-    public_ip_name       = "backend-pip"
-    nic_name             = "nic-dev-002"
-    location             = "Central India"
-    resource_group_name  = "rg-dev-001"
-    vm_name              = "vm-dev-001"
-    vm_size              = "Standard B1s"
-    admin_username       = "testuser"
-    admin_password       = "P@ssword1234"
+    key_vault_name           = "myapp-kv-dev"
+    key_vault_resource_group = "myapp-rg-dev"
+    username                 = "username2"
+    password                 = "password2"
+    subnet_name              = "backend"
+    virtual_network_name     = "vnet-dev-001"
+    public_ip_name           = "backend-pip"
+    nic_name                 = "nic-dev-002"
+    location                 = "Central India"
+    resource_group_name      = "rg-dev-001"
+    vm_name                  = "vm-dev-001"
+    vm_size                  = "Standard B1s"
     os_disk = {
       osdisk1 = {
         caching              = "ReadWrite"
@@ -145,6 +149,19 @@ vms = {
       environment = "dev"
       project     = "project-x"
     }
+  }
+}
+
+
+key_vaults = {
+  kv1 = {
+    name                        = "kv1-dev"
+    location                    = "Central India"
+    resource_group_name         = "rg-dev-001"
+    enabled_for_disk_encryption = true
+    soft_delete_retention_days  = 7
+
+    sku_name = "standard"
   }
 }
 

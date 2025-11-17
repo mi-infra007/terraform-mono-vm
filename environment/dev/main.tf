@@ -20,3 +20,9 @@ module "linux_virtual_machines" {
   vms = var.vms
   depends_on = [ module.virtual_networks, module.public_ip ]
 }
+
+module "key_vaults" {
+  source = "../../modules/azurerm_key_vault"
+  key_vaults = var.key_vaults
+  depends_on = [ module.resource_groups ]
+}
