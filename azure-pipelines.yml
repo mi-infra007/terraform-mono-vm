@@ -3,9 +3,17 @@ trigger: none
 pool:
  vmImage: ubuntu-latest
 
+parameters:
+  - name: environment
+    type: string
+    default: dev
+    values:
+      - dev
+      - qa
+
 variables:
   - name: def_path
-    value: '$(System.DefaultWorkingDirectory)/environment/dev'
+    value: '$(System.DefaultWorkingDirectory)/environment/${{ parameters.environment }}'
 
   # - stage1 - init, validate and plan
   # - stage2 - code scanning
