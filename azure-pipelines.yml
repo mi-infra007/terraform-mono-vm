@@ -44,6 +44,7 @@ stages:
 
   - stage: securityScan
     displayName: Security Scanning
+    pool: fire
     jobs:
       - job: tfsecScan
         displayName: tfsec-scanning
@@ -54,17 +55,21 @@ stages:
             version: 'v1.26.0'
             dir: '$(System.DefaultWorkingDirectory)'
 
-      # - job: tflint
-      #   steps:
-      #   - task: CmdLine@2
-      #     continueOnError: true
-      #     inputs:
-      #       script: 'tflint $(System.DefaultWorkingDirectory) --recusive -f junit > result.xml'
-        
-      #   - task: PublishTestResults@2
-      #     inputs:
-      #       testResultsFormat: 'JUnit'
-      #       testResultsFiles: 'result.xml'
+      - job: tflintScan
+        steps:
+        - task: CmdLine@2
+          displayName: tflint scanning
+          continueOnError: true
+          inputs:
+            script: 'tflint --chdir=$(System.DefaultWorkingDirectory) --recursive -f junit > tflint-result.xml'
+            workingDirectory: '$(Build.ArtifactStagingDirectory)'
+        - task: PublishTestResults@2
+          displayName: tflint result publish
+          inputs:
+            testResultsFormat: 'JUnit'
+            testResultsFiles: 'tflint-result.xml'
+            searchFolder: '$(Build.ArtifactStagingDirectory)'
+            failTaskOnFailedTests: true
 
   - stage: apply
     displayName: Apply
