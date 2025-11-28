@@ -109,6 +109,16 @@ stages:
     jobs:
       - job: costEstimate
         steps:
+        - task: TerraformTask@5
+          displayName: Terraform Init
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            workingDirectory: '$(def_path)'
+            backendServiceArm: 'new-connect'
+            backendAzureRmStorageAccountName: 'fire007'
+            backendAzureRmContainerName: 'fire'
+            backendAzureRmKey: '${{ parameters.environment }}.tfstate'
         - task: CmdLine@2
           inputs:
             script: 'infracost breakdown --path $(def_path) --format html > out.html'
