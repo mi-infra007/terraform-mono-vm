@@ -122,9 +122,10 @@ stages:
         - task: CmdLine@2
           inputs:
             script: 'infracost breakdown --path $(def_path) --format html > out.html'
+
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: '$(def_path)/out.html'
+            PathtoPublish: '$(System.DefaultWorkingDirectory)/out.html'
             ArtifactName: 'costReport.html'
             publishLocation: 'Container'
 
