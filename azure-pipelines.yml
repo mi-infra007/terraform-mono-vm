@@ -126,7 +126,7 @@ stages:
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: '$(System.DefaultWorkingDirectory)/out.html'
-            ArtifactName: 'costReport.html'
+            ArtifactName: 'Report'
             publishLocation: 'Container'
 
   - stage: apply
@@ -147,10 +147,6 @@ stages:
         dependsOn: manualValidation
         displayName: Apply
         steps:
-        - task: TerraformInstaller@1
-          inputs:
-            terraformVersion: 'latest'
-    
         - task: TerraformTask@5
           displayName: Terraform Init
           inputs:
